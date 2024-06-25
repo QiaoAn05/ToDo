@@ -1,5 +1,8 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { Task } from './components/Task';
+
+
 
 function App() {
   //State
@@ -10,6 +13,8 @@ function App() {
  ])
 
  const [ newTaskDesc, setNewTaskDesc ] = useState("");
+
+ const [editingTask, setEditingTask] = useState(null);
 
 //Comportements
 const handleSubmit = (e) => {
@@ -46,6 +51,18 @@ const handleDelete = (id) => {
   setTasks(tasksCopyUpdated);
 }
 
+// const handleEdit = (taskToUpdate) => {
+// //copie du state
+// const tasksCopy = [...tasks];
+// //manipulation de la copie du state
+// const tasksCopyUpdated = tasksCopy.map((task) =>
+//   task.id === taskToUpdate.id ? taskToUpdate : task,
+// );
+// //modification du state
+// setTasks(tasksCopyUpdated);
+// setEditingTask(null);
+// }
+
 // Affichage
   return (
     <>
@@ -58,14 +75,27 @@ const handleDelete = (id) => {
         <section>
           <ul>
             { tasks.map((task) => (
-              <li key={task.id}>{task.desc} <button onClick={()=>handleDelete(task.id)}>X</button></li>
+              <Task
+                key={task.id}
+                taskInfo={task}
+                onClick={()=>{handleDelete(task.id)}}
+                onEdit={() => setEditingTask(task)}
+              />
             )) }
           </ul>
         </section>
-        <form action='submit' onSubmit={handleSubmit}>
-          <button>Ajouter</button>
-          <input onChange={handleChange} value={newTaskDesc}  type="text" placeholder='Titre de la tâche' />
-        </form>
+        {!editingTask && (
+          <form action='submit' onSubmit={handleSubmit}>
+            <button>Ajouter</button>
+            <input onChange={handleChange} value={newTaskDesc}  type="text" placeholder='Titre de la tâche' />
+          </form>
+        )}
+        {editingTask && (
+          <form action='submit' onSubmit={handleSubmit}>
+            <button>Ajouter</button>
+            <input onChange={handleChange} value={newTaskDesc}  type="text" placeholder='Titre de la tâche' />
+          </form>
+        )}
       </main>
     </>
   )
