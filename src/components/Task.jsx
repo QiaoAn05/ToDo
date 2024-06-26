@@ -1,4 +1,5 @@
-export function Task({ taskInfo, onClick, onEdit }) {
+/* eslint-disable react/prop-types */
+export default function Task({ taskInfo, onClick, onEdit }) {
     //state
     //comportements
     //affichage

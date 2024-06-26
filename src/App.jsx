@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { Task } from './components/Task';
+import Task from './components/Task';
 import TaskForm from './components/TaskForm';
 import EditTaskForm from './components/EditTaskForm';
 
@@ -17,7 +17,6 @@ function App() {
  const [editingTask, setEditingTask] = useState(null);
 
 //Comportements
-
 
 const handleAdd = (taskToAdd) => {
 //copie du state
@@ -52,10 +51,11 @@ const updateTask = (taskToUpdate) => {
     <>
       <header>
         <h1>My ToDo List</h1>
+        <p>Bienvenue dans My ToDo List ! Dans cette application vous pouvez planifier les tâches de votre journée en les ajoutants ou les modifiants. Quand vous en avez finis, il vous suffit de les supprimer.</p>
       </header>
       <main>
-        <h3>Le 25 Juin 2024</h3>
-        <h2>Tâches :</h2>
+        <h2>Ma Journée</h2>
+        <p>Le 25 Juin 2024</p>
         <section>
           <ul>
             { tasks.map((task) => (

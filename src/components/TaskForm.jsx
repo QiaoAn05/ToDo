@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react"
 
 export default function TaskForm({ handleAdd }) {
@@ -6,6 +7,9 @@ export default function TaskForm({ handleAdd }) {
     //comportements
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(newTaskDesc === "") {
+            return;
+        }
         //copie du state
         //manipulation de la copie du state
         const id = new Date().getTime();
@@ -24,7 +28,7 @@ export default function TaskForm({ handleAdd }) {
     return(
         <>
             <form action='submit' onSubmit={handleSubmit}>
-                <button>Ajouter</button>
+                <button>+</button>
                 <input onChange={handleChange} value={newTaskDesc}  type="text" placeholder='Titre de la tâche' />
             </form>
         </>

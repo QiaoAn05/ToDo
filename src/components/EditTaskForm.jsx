@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react"
 
 export default function EditTaskForm({ task, handleUpdate, handleCancel }) {
@@ -17,8 +18,8 @@ export default function EditTaskForm({ task, handleUpdate, handleCancel }) {
     return(
         <>
             <form action='submit' onSubmit={handleSubmit}>
-                <button>Valier</button>
-                <button type="button" onClick={handleCancel}>Annuler</button>
+                <button className="btn-edit-valid">Modifier</button>
+                <button className="btn-cancel" type="button" onClick={handleCancel}>Annuler</button>
                 <input onChange={handleChange} value={desc}  type="text" placeholder='Décrire la tâche' />
             </form>
         </>

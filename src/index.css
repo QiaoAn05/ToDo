@@ -13,3 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
+:root {
+  font-family: "Chivo mono", monospace;
+}
