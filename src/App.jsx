@@ -44,6 +44,11 @@ const updateTask = (taskToUpdate) => {
   setEditingTask(null);
 }
 
+const formatDate = (date) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('fr-FR', options);
+}
+
 // Affichage
   return (
     <>
@@ -54,7 +59,7 @@ const updateTask = (taskToUpdate) => {
       <main>
         <h2>Ma Journée
         </h2>
-        <p>Le 25 Juin 2024</p>
+        <p>Le {formatDate(new Date())}</p>
         <section>
           <ul>
             { tasks.map((task) => (
