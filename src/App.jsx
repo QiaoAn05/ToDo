@@ -4,8 +4,6 @@ import Task from './components/Task';
 import TaskForm from './components/TaskForm';
 import EditTaskForm from './components/EditTaskForm';
 
-
-
 function App() {
   //State
  const [tasks, setTasks] = useState([
@@ -51,10 +49,11 @@ const updateTask = (taskToUpdate) => {
     <>
       <header>
         <h1>My ToDo List</h1>
-        <p>Bienvenue dans My ToDo List ! Dans cette application vous pouvez planifier les tâches de votre journée en les ajoutants ou les modifiants. Quand vous en avez finis, il vous suffit de les supprimer.</p>
+        <p>Bienvenue dans My ToDo List ! Dans cette application vous pouvez gérer les tâches de votre journée en les ajoutants(+), les modifiants(M) ou en les supprimants(X). Quand vous en avez finis, il vous suffit de les supprimer.</p>
       </header>
       <main>
-        <h2>Ma Journée</h2>
+        <h2>Ma Journée
+        </h2>
         <p>Le 25 Juin 2024</p>
         <section>
           <ul>

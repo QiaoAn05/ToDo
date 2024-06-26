@@ -7,6 +7,10 @@ export default function EditTaskForm({ task, handleUpdate, handleCancel }) {
     //comportements
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(desc === "") {
+            return;
+        }
         handleUpdate({...task, desc});
     }
 
@@ -18,8 +22,8 @@ export default function EditTaskForm({ task, handleUpdate, handleCancel }) {
     return(
         <>
             <form action='submit' onSubmit={handleSubmit}>
-                <button className="btn-edit-valid">Modifier</button>
-                <button className="btn-cancel" type="button" onClick={handleCancel}>Annuler</button>
+                <button className="btn-edit-valid">M</button>
+                <button className="btn-cancel" type="button" onClick={handleCancel}>C</button>
                 <input onChange={handleChange} value={desc}  type="text" placeholder='Décrire la tâche' />
             </form>
         </>

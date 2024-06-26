@@ -6,9 +6,9 @@ export default function Task({ taskInfo, onClick, onEdit }) {
     return (
         <>
             <li>
-                {taskInfo.desc}
-                <button onClick={onEdit}>Modifier</button>
+                <button onClick={onEdit}>M</button>
                 <button onClick={onClick}>X</button>
+                {taskInfo.desc}
             </li>
         </>
     );
