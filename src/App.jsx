@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import { Task } from './components/Task';
+import TaskForm from './components/TaskForm';
+import EditTaskForm from './components/EditTaskForm';
 
 
 
@@ -12,21 +14,10 @@ function App() {
   { id: 3, desc: "Finir le dossier professionnel"},
  ])
 
- const [ newTaskDesc, setNewTaskDesc ] = useState("");
-
  const [editingTask, setEditingTask] = useState(null);
 
 //Comportements
-const handleSubmit = (e) => {
-  e.preventDefault();
-  //copie du state
-  //manipulation de la copie du state
-  const id = new Date().getTime();
-  const desc = newTaskDesc;
-  const taskToAdd = { id, desc };
-  //modification du state
-  handleAdd(taskToAdd);
-}
+
 
 const handleAdd = (taskToAdd) => {
 //copie du state
@@ -35,12 +26,7 @@ const tasksCopy = [...tasks];
 tasksCopy.push(taskToAdd);
 //modification du state
 setTasks(tasksCopy);
-setNewTaskDesc("");
 }
-
- const handleChange = (e) => {
-  setNewTaskDesc(e.target.value);
- }
 
 const handleDelete = (id) => {
   //copie du state
@@ -51,17 +37,15 @@ const handleDelete = (id) => {
   setTasks(tasksCopyUpdated);
 }
 
-// const handleEdit = (taskToUpdate) => {
-// //copie du state
-// const tasksCopy = [...tasks];
-// //manipulation de la copie du state
-// const tasksCopyUpdated = tasksCopy.map((task) =>
-//   task.id === taskToUpdate.id ? taskToUpdate : task,
-// );
-// //modification du state
-// setTasks(tasksCopyUpdated);
-// setEditingTask(null);
-// }
+const updateTask = (taskToUpdate) => {
+  //copie du state
+  const tasksCopy = [...tasks];
+  //manipulation sur la copie du state
+  const tasksCopyUpdated = tasksCopy.map((task) => task.id === taskToUpdate.id ? taskToUpdate : task);
+  //modifier le state avec le setter
+  setTasks(tasksCopyUpdated);
+  setEditingTask(null);
+}
 
 // Affichage
   return (
@@ -85,16 +69,14 @@ const handleDelete = (id) => {
           </ul>
         </section>
         {!editingTask && (
-          <form action='submit' onSubmit={handleSubmit}>
-            <button>Ajouter</button>
-            <input onChange={handleChange} value={newTaskDesc}  type="text" placeholder='Titre de la tâche' />
-          </form>
+          <TaskForm handleAdd={handleAdd}/>
         )}
         {editingTask && (
-          <form action='submit' onSubmit={handleSubmit}>
-            <button>Ajouter</button>
-            <input onChange={handleChange} value={newTaskDesc}  type="text" placeholder='Titre de la tâche' />
-          </form>
+          <EditTaskForm
+            task={editingTask}
+            handleUpdate={updateTask}
+            handleCancel={()=>{setEditingTask(null)}}
+          />
         )}
       </main>
     </>
